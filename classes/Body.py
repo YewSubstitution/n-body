@@ -69,12 +69,12 @@ class Body:
     
     """ Misc. Methods """
 
-    def _draw_body(self, frame:int):
+    def draw_body(self, frame:int):
         """Return the coordinates of the body given a frame."""
 
         return [self.posHist[frame][0]], [self.posHist[frame][1]]
     
-    def _draw_vel(self, frame: int, physics):
+    def draw_vel(self, frame: int, physics):
         """Return the coordinates of the body's velocity vector."""
         # TODO: Fix this. It is buggy, the vectors are too long
 
@@ -95,7 +95,7 @@ class Body:
 
         return velVecX, velVecY
 
-    def _draw_acc(self, frame: int, physics):
+    def draw_acc(self, frame: int, physics):
 
         if not self.showAcc:
             return [0, 0], [0, 0]
@@ -113,7 +113,7 @@ class Body:
 
         return accVecX, accVecY
 
-    def _draw_traj(self, frame):
+    def draw_traj(self, frame):
         xBeforeFrame, yBeforeFrame = [], []
 
         if not self.showTraj:
@@ -129,7 +129,7 @@ class Body:
         
         return xBeforeFrame, yBeforeFrame
     
-    def _draw_graph(self, frame):
+    def draw_graph(self, frame):
         """Draws a graph of kinetic and potential energy in the system"""
         
 

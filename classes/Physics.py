@@ -149,19 +149,20 @@ class Physics():
 
             # Update the object
             if isBody:
-                self.animationList[objIndex].set_data(body._draw_body(frame)[0], body._draw_body(frame)[1])
+                self.animationList[objIndex].set_data(body.draw_body(frame)[0], body.draw_body(frame)[1])
             elif isVel:
-                self.animationList[objIndex].set_data(body._draw_vel(frame, self)[0], body._draw_vel(frame, self)[1])
+                self.animationList[objIndex].set_data(body.draw_vel(frame, self)[0], body.draw_vel(frame, self)[1])
             elif isAcc:
-                self.animationList[objIndex].set_data(body._draw_acc(frame, self)[0], body._draw_acc(frame, self)[1])
+                self.animationList[objIndex].set_data(body.draw_acc(frame, self)[0], body.draw_acc(frame, self)[1])
             elif isTraj:
-                self.animationList[objIndex].set_data(body._draw_traj(frame)[0], body._draw_traj(frame)[1])
+                self.animationList[objIndex].set_data(body.draw_traj(frame)[0], body.draw_traj(frame)[1])
             else:
                 raise ValueError("Animation object cannot be classified")
 
         return self.animationList
 
     def draw_graphs(self, frame:int):
+        """Draw the graph of the mechanical energy of the system"""
         
         for graphObj in self.graphList:
             body = self.graphList.at(graphObj)
@@ -170,6 +171,3 @@ class Physics():
             self.graphList.at(graphObj).set_data(drawGraph[0], drawGraph[1])
 
         return self.graphList
-
-class constants:
-    pass
