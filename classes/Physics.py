@@ -7,6 +7,7 @@ class Physics():
 
     # Static Variables
     numBodies = 0
+    offset = False      # TODO: Implement automatic position offset
 
 
     # Constructor
@@ -36,7 +37,7 @@ class Physics():
                 self.bodies.append(arg)
                 Physics.numBodies += 1
 
-    def update(self):
+    def _update(self):
         """"Main loop of Physics class."""
 
         for body in self.bodies:            # Update force and velocity
@@ -47,15 +48,15 @@ class Physics():
     def run(self, end, log=False, extLog=False):
         """Run physics simulation until specified frame"""
 
-        self.update() # TODO: Check why this is here
+        self._update() # TODO: Check why this is here. Why did i put this here!?!?!
 
         for i in range(0, end):
-            self.update()
+            self._update()
 
-            if log: self.print()
+            if log: 
+                self.print()
 
             if i == end - 1:
-
                 listOfAllPoints = self.get_list_of_all_points()
 
                 self.minPos, self.maxPos = get_bounds_of_points(listOfAllPoints[0])
@@ -74,9 +75,9 @@ class Physics():
 
     def print(self, *args):
         """In *args, specify a tuple of names to print only the objects with those names.
-        TODO: Figure out a better way to do this. Add time/frame display
         """
         
+        # TODO: Figure out a better way to do this. Add time/frame display
         listOfPrintableIndices = []
 
         if len(args) != 0:
@@ -88,7 +89,6 @@ class Physics():
             for i in listOfPrintableIndices:                                        # Print only details from desired bodies
                 self.bodies[i].print_chars()                
             print("-------------------------")
-    
         else:
             for body in self.bodies:                                                # Print details of all bodies
                 body.print_chars()

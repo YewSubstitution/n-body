@@ -30,14 +30,18 @@ def unit_vector(vector: np.array, EPSILON=1e-5):
 
 """ Accessory Functions for Body """
 
+# TODO: Find a way to circumnavigate this function. This seems unecessary
 def parse_color_to_RGB(colorStr: str):
     """Turn informal strings holding the name of a color into rgb"""
     
     colorStr = colorStr.lower()
 
-    colorRGB = (1, 0, 0) # Red by default
+    colorRGB = (1, 0, 0)                                # Red by default
     if colorStr == "green": colorRGB = (0, 1, 0)
     if colorStr == "blue": colorRGB = (0, 0, 1)
+    if colorStr == "yellow": colorRGB = (1, 1, 0)
+    if colorStr == "purple": colorRGB = (1, 0, 1)
+    if colorStr == "teal": colorRGB = (0, 1, 1)
     # TODO: Add more colors
     
     return colorRGB

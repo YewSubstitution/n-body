@@ -26,7 +26,7 @@ Body(pos=(1.0, 1.0), vel=(-0.5, 0.0),
      name="Betelgeuse", color="Green", showVel=False, showAcc=True, showTraj=True),
 Body(pos=(-10.0, 1.0), vel=(1.5, 1.5),
      mass=3e11, radius=10.0,
-     name="Sag. A*", color="red", showVel=False, showAcc=True, showTraj=True)
+     name="Sag. A*", color="yellow", showVel=False, showAcc=True, showTraj=True)
 
 )
 

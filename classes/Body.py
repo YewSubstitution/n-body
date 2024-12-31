@@ -76,14 +76,15 @@ class Body:
     
     def draw_vel(self, frame: int, physics):
         """Return the coordinates of the body's velocity vector."""
-        # TODO: Fix this. It is buggy, the vectors are too long
 
+        # TODO: Fix this. There must be a better way to handle showVel false.
         if not self.showVel:
             return [0, 0], [0, 0]
         
         currPos = self.posHist[frame]
         currVel = self.velHist[frame]
         
+        # TODO: Fix this. It is buggy, the vectors display weirdly given misshapen bounds
         intVector = np.array((currVel[0], currVel[1]), dtype=float)
         intVector = (physics.screenDiag / params.vectorPortionOfScreen) * unit_vector(intVector)
 
@@ -131,8 +132,7 @@ class Body:
     
     def draw_graph(self, frame):
         """Draws a graph of kinetic and potential energy in the system"""
-        
 
-        # TODO: Potential energy
+        # TODO: Implement this
 
         pass
