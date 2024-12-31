@@ -45,18 +45,20 @@ class Physics():
         for body in self.bodies:            # Update position from new velocity
             body.update_pos()
 
-    def run(self, end, log=False, extLog=False):
+    def run(self, end, log=False, desiredBodies: tuple=()):
         """Run physics simulation until specified frame"""
 
-        self._update() # TODO: Check why this is here. Why did i put this here!?!?!
+        if log:
+            self.print_in_sim(0, end, desiredBodies)
 
-        for i in range(0, end):
+        for frame in range(0, end):
             self._update()
 
-            if log: 
-                self.print()
+            if log:
+                self.print_in_sim(frame, end, desiredBodies)
 
-            if i == end - 1:
+            # Once finsished, ascertain the extrema of the simulation
+            if frame == end - 1:
                 listOfAllPoints = self.get_list_of_all_points()
 
                 self.minPos, self.maxPos = get_bounds_of_points(listOfAllPoints[0])
@@ -68,34 +70,13 @@ class Physics():
                 h = self.maxPos[1] - self.minPos[1]
                 self.screenDiag = np.sqrt(w**2 + h**2)
 
-                # Calculate potential energies for each body
+                # TODO: Calculate potential energies for each body
 
 
     """Accessors"""
 
-    def print(self, *args):
-        """In *args, specify a tuple of names to print only the objects with those names.
-        """
-        
-        # TODO: Figure out a better way to do this. Add time/frame display
-        listOfPrintableIndices = []
-
-        if len(args) != 0:
-            for arg in args:                                                        # Ascertain indices of desired bodies
-                for body in self.bodies:
-                    if arg == body.name:
-                        listOfPrintableIndices.append(self.bodies.index(body))
-
-            for i in listOfPrintableIndices:                                        # Print only details from desired bodies
-                self.bodies[i].print_chars()                
-            print("-------------------------")
-        else:
-            for body in self.bodies:                                                # Print details of all bodies
-                body.print_chars()
-            print("-------------------------")
-
     def get_list_of_all_points(self):
-        """Return a list of all points, velocities, and accelerations accessed by all bodies"""
+        """Return a list of all points, velocities, and accelerations accessed by all bodies."""
 
         allPos, allVel, allAcc = [], [], []
 
@@ -109,6 +90,35 @@ class Physics():
 
         return allPos, allVel, allAcc
 
+    def print_in_sim(self, frame: int, end: int, desiredBodies: tuple=()):
+        """In *args, specify a tuple of names to print only the objects with those names."""
+        
+        # TODO: Figure out a better way to do this. This runs a bunch of times
+        listOfPrintableIndices = []
+
+        # If bodies are specified, ascertain indices of desired bodies and print only their details
+        if len(desiredBodies) != 0:
+            for arg in desiredBodies:
+                for body in self.bodies:
+                    if arg == body.name:
+                        listOfPrintableIndices.append(self.bodies.index(body))
+            # Print only details from desired bodies
+            print(f"Frame: {frame+1} / {end}")
+            for i in listOfPrintableIndices:
+                self.bodies[i].print_chars()
+            print("-------------------------")
+
+        # If no details are specified, print details of all bodies
+        else:
+            print(f"Frame: {frame+1} / {end}")
+            for body in self.bodies:
+                body.print_chars()
+            print("-------------------------")
+
+    def print_in_anim(self):
+        # TODO: Implement this
+
+        pass
 
     """Misc Methods"""
 
@@ -127,6 +137,8 @@ class Physics():
 
     def draw_bodies(self, frame:int, log=False):
         """Iterate through animationList and update the data for each object to resemble the current frame"""
+
+        # TODO: Implement logging in animation (self.print_in_anim)
 
         # Iterate through all animation objects. If there are n bodies, there will be 3n objects
         for animObj in self.animationList:
