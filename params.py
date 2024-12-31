@@ -13,17 +13,19 @@ dt = 0.01
 startTime, endTime = 0.0, 15.0
 factor = 1.0
 
-# Logging
-logSim = False
-
 
 """ Animation Params """
-
-logAnim = False
 
 # Velocity, acceleration vector display
 vectorPortionOfScreen = 20.0
 minVectorSizeProportion, maxVectorSizeProportion = 0.5, 2.0
+
+
+""" Logging """
+
+logAxSetup = False
+logSim = True
+logAnim = False
 
 
 
@@ -37,4 +39,4 @@ minVectorSizeProportion, maxVectorSizeProportion = 0.5, 2.0
 
 
 """ Calculations """
-numFrames = int((endTime - startTime) / dt)
+frames = int((endTime - startTime) / dt)

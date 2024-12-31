@@ -36,17 +36,18 @@ if __name__ == "__main__":
 
      """ Simulation """
 
-     physics.run(numFrames, log=logSim)
+     physics.run(frames, log=logSim, desiredBodies=tuple([]))
 
 
      """ Matplotlib Display Setup """
 
      fig, ax = plt.subplots(1, 2, figsize=figSize, dpi=dpi)
+     plt.subplots_adjust(wspace=0.4)
      display, graph1 = ax
 
-     # Set up axes
-     axis_setup(display, minMax=(physics.minPos, physics.maxPos), log=False, cosmetics=cosmetics)
-     axis_setup(graph1)
+     # Set up plots
+     axis_setup(display, minMax=(physics.minPos, physics.maxPos), plotTitle="Display", xTitle="Distance (m)", yTitle="Distance (m)", log=logAxSetup, cosmetics=cosmetics)
+     axis_setup(graph1, plotTitle="Mechanical Energy", xTitle="Time (s)", yTitle="Energy (J)")
 
 
      """ Matplotlib Animation Setup """
@@ -56,13 +57,8 @@ if __name__ == "__main__":
      def anim_func(frame):
           """Looping function for animation in main."""
 
-          animObjs = []
+          return physics.draw_bodies(frame, log=logAnim)
 
-          for object in physics.draw_bodies(frame, log=logAnim):
-               animObjs.append(object)
-
-          return animObjs
-
-     animation = an.FuncAnimation(fig, anim_func, frames=numFrames, interval=10, blit=1)
+     animation = an.FuncAnimation(fig, anim_func, frames=frames, interval=10, blit=1)
 
      plt.show()
