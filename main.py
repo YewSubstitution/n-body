@@ -4,8 +4,8 @@ import matplotlib.animation as an
 from params import *
 from include.mpfunc import *
 
-from classes.Body import Body
-from classes.Physics import Physics
+from classes.body import Body
+from classes.physics import Physics
 
 
 """ Physics Environment Setup """

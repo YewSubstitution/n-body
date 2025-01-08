@@ -1,8 +1,8 @@
-# n-Body Problem Simulation Constructed in Python 3 (with numpy, matplotlib)
+# n-Body Problem Simulation Constructed in Python (with numpy, matplotlib)
 
-## A small-scope simulation of central-force (gravity) interactions between n bodies (represented by points) in space
+## A small-scope simulation of central-force interactions between n bodies in space
 
-Adjust necessary paramters held in params.py, add bodies in main.py and run the script.
+Adjust necessary parameters stored in params.py, add, remove, and modify bodies in main.py and run the script.
 
 This simulation utilizes two fundamental classes:
 

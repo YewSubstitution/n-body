@@ -1,7 +1,7 @@
 import numpy as np
 
 from include.func import get_bounds_of_points, get_scalar_bounds_of_points
-from classes.Body import Body
+from classes.body import Body
 
 class Physics():
 
